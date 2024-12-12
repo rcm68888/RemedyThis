@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import UserProfilePage from './pages/UserProfilePage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import ChatbotPage from './pages/ChatbotPage';
 import SearchPage from './pages/SearchPage';
@@ -16,6 +17,7 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/chatbot" element={<ChatbotPage />} />
             <Route path="/search" element={<SearchPage />} />
