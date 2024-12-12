@@ -1,6 +1,6 @@
 require('dotenv').config(); // Load environment variables
 const express = require('express');
-const pool = require('./db'); // Import the database connection
+const pool = require('./database'); // Import the database connection
 const cors = require('cors');
 const dotenv = require('dotenv');
 const remediesRoutes = require('./routes/remedies');
