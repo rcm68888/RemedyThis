@@ -6,18 +6,23 @@ const API = axios.create({
 });
 
 // Define TypeScript types for data
-interface Post {
+export interface Post {
     author: string;
     content: string;
 }
 
-interface Remedy {
+export interface Remedy {
     id: number;
     title: string;
     description: string;
 }
 
 // API functions
-export const fetchRemedies = (): Promise<Remedy[]> => API.get('/remedies').then((res) => res.data);
-export const fetchPosts = (): Promise<Post[]> => API.get('/forum').then((res) => res.data);
-export const addPost = (post: Post): Promise<Post> => API.post('/forum', post).then((res) => res.data);
+export const fetchRemedies = (): Promise<Remedy[]> =>
+    API.get('/remedies').then((res) => res.data);
+
+export const fetchPosts = (): Promise<Post[]> =>
+    API.get('/forum').then((res) => res.data);
+
+export const addPost = (post: Post): Promise<Post> =>
+    API.post('/forum', post).then((res) => res.data);

@@ -1,17 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  build: {
-      rollupOptions: {
-          input: './index.html',
-      },
-  },
-  server: {
-      proxy: {
-          '/api': 'http://localhost:5000', // Optional proxy for local backend
-      },
-  },
+    plugins: [react()],
+    build: {
+        outDir: 'dist',
+        sourcemap: true,
+    },
 });

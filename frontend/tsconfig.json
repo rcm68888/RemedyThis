@@ -5,5 +5,9 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "strict": true,
         "types": ["vite/client"]}
 }
