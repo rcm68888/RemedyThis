@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => {
         try {
             const response = await axios.post('http://localhost:5000/api/login', { email, password });
             localStorage.setItem('token', response.data.token);
-            navigate('/profile');
+            navigate('/');
         } catch (err) {
             if (axios.isAxiosError(err)) {
                 setError(err.response?.data?.message || 'Login failed');

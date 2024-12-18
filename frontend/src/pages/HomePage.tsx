@@ -10,8 +10,11 @@ const HomePage: React.FC = () => {
     useEffect(() => {
         // Simulate checking authentication status (replace with real auth logic)
         const token = localStorage.getItem('authToken');
+        //console.log('Token:', token);
         setIsLoggedIn(!!token);
-    }, []);
+        setIsLoggedIn(true);
+        //console.log('isLoggedIn:', !!token);
+    }, [localStorage.getItem('authToken')]);
 
     const handleLogout = () => {
         // Clear authentication tokens or perform necessary cleanup
@@ -33,8 +36,8 @@ const HomePage: React.FC = () => {
                         <button onClick={handleLogout}>Logout</button>
                         <button onClick={() => navigate('/dashboard')}>Dashboard</button>
                         <button onClick={() => navigate('/search')}>Search</button>
-                        <button onClick={() => navigate('/chat')}>Chat</button>
-                        <button onClick={() => navigate('/nearme')}>NearMe</button>
+                        <button onClick={() => navigate('/chatbot')}>Chat</button>
+                        <button onClick={() => navigate('/near-me')}>NearMe</button>
                     </>
                 ) : (
                     <>
