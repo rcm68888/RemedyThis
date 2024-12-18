@@ -5,6 +5,9 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@vitejs/*": ["node_modules/@vitejs/*"]},
         "moduleResolution": "node",
         "esModuleInterop": true,
         "resolveJsonModule": true,

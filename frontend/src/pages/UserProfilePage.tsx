@@ -1,56 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const UserProfilePage: React.FC = () => {
-    const [profile, setProfile] = useState({
-        name: '',
-        email: '',
-        address: '',
-        healthConcerns: '',
-    });
+    const [profile, setProfile] = useState<{ name: string; email: string } | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setProfile({ ...profile, [e.target.name]: e.target.value });
-    };
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:5000/api/profile', {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setProfile(response.data);
+            } catch (err) {
+                setError('Failed to fetch profile');
+            }
+        };
+        fetchProfile();
+    }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log(profile);
-    };
+    if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
     return (
         <div>
-            <h1>Set Up Your Profile</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={profile.name}
-                    onChange={handleChange}
-                />
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={profile.email}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="address"
-                    placeholder="Address"
-                    value={profile.address}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    name="healthConcerns"
-                    placeholder="Health Concerns"
-                    value={profile.healthConcerns}
-                    onChange={handleChange}
-                />
-                <button type="submit">Save Profile</button>
-            </form>
+            <h1>User Profile</h1>
+            {profile ? (
+                <div>
+                    <p>Name: {profile.name}</p>
+                    <p>Email: {profile.email}</p>
+                </div>
+            ) : (
+                <p>Loading...</p>
+            )}
         </div>
     );
 };
